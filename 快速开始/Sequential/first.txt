@@ -88,3 +88,24 @@ model.compile(
  labels = np.random.randint(2,size = (1000,1))
  #训练模型，以32个样本为一个batch进行
  model.fit(data,labelsmepochs = 10,batch_size = 32)
+ 
+ #对于10个类的单输入模型
+ model = Sequential()
+ model.add(Dense(32,activation = 'relu',input_dim = 100))
+ model.add(Dese(10,activation = 'softmax'))
+ model.compile(
+               optimizer = 'rmsprop',
+               loss = 'categrorical_crossentrop',
+               metrics = ['accuracy'])
+ #生成虚拟数据
+ import numpy as np
+ data = np.random.random((1000,100))
+ labels = mp.random.randint(10,,size = (1000,1))
+ 
+ #将标签转换为分类的one-hot 编码
+ one_hot_labels = keras.utils.to_categorical(labels,num_classes = 10)
+ 
+ #训练模型。以32个样本为一个batch进行迭代
+ model.fit(data,one_hot_labels,epochs = 10,batch_size = 32)
+ 
+ 
