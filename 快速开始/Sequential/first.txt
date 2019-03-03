@@ -69,3 +69,22 @@ model.compile(
         optimizer = 'rmsprop',
         loss = 'binary_crossentropy',
         metrics = ['accuracy',menas_pres])
+        
+'''
+模型训练
+'''
+#对于有2个类的单输入模型
+model = Sequential()
+model.add(Dense(32,activation = 'relu',input_dim = 100))
+model.add(Dense(1,activation = 'sigmoid'))
+model.compile(
+             optimizer = 'rmsprop',
+             loss = 'binary_crossentropy',
+             metrics = ['accuracy'])
+             
+ #生成虚拟数据
+ import numpy as np
+ data = np.random.random((1000,100))
+ labels = np.random.randint(2,size = (1000,1))
+ #训练模型，以32个样本为一个batch进行
+ model.fit(data,labelsmepochs = 10,batch_size = 32)
